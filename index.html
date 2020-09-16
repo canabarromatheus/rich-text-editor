@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Rich-Text Editor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    </head>
+    <body>
+        <div id="title">
+            <h1>Rich-Text Editor | JS</h1>
+        </div>
+        <div id="subtitle">
+            <h2>By Matheus Canabarro</h2>
+        </div>
+
+        <div id="toolbar" class="btn-toolbar text-center d-flex justify-content-center mt-5" role="toolbar" aria-label="Toolbar with format text buttons">
+            <div class="btn-group mr-1 p-2" role="group" aria-label="First Format Group">
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('bold')" data-toggle="tooltip" data-placement="top" title="Turn selected text in Bold"><span class="fas fa-bold"></span> </a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('italic')" data-toggle="tooltip" data-placement="top" title="Turn selected text in Italic"><span class="fas fa-italic"></span> </a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('underline')" data-toggle="tooltip" data-placement="top" title="Put a underline in selected text"><span class="fas fa-underline"></span> </a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('formatBlock','H1')" data-toggle="tooltip" data-placement="top" title="Turn selected text in a title"><span class="fas fa-heading"></span> </a>
+            </div>
+
+            <div class="btn-group mr-1 p-2" role="group" aria-label="First Format Group">
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('fontSize', fontSizeUp())" data-toggle="tooltip" data-placement="top" title="increase the font size"><span class="fas fa-font">+</span> </a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('fontSize', fontSizeDown())" data-toggle="tooltip" data-placement="top" title="decrement the font size"><span class="fas fa-font">-</span> </a>
+            </div>
+
+            <div class="btn-group mr-1 p-2" role="group" aria-label="First Format Group">
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('insertunorderedlist')" data-toggle="tooltip" data-placement="top" title="Turn selected text in a unordered list"><span class="fas fa-list-ul"></span> </a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('insertorderedlist')" data-toggle="tooltip" data-placement="top" title="Turn selected text in a ordered list"><span class="fas fa-list"></span> </a>
+            </div>
+
+            <div class="btn-group mr-1 p-2" role="group" aria-label="First Format Group">
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('justifyLeft')" data-toggle="tooltip" data-placement="top" title="Align a selected text on left"><span class="fas fa-align-left"></span></a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('justifyCenter')" data-toggle="tooltip" data-placement="top" title="Align a selected text on center"><span class="fas fa-align-center"></span></a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('justifyRight')" data-toggle="tooltip" data-placement="top" title="Align a selected text on right"><span class="fas fa-align-right"></span></a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('justifyFull')" data-toggle="tooltip" data-placement="top" title="Align a selected text on justified"><span class="fas fa-align-justify"></span></a>
+            </div>
+
+            <div class="btn-group mr-1 p-2" role="group" aria-label="First Format Group">
+                <a href="javascript:void(0)" class="btn btn-light" onclick="formatter('undo')" data-toggle="tooltip" data-placement="top" title="remove the last text edition (technically Ctrl + Z)"><span class="fas fa-eraser"></span></a>
+            </div>
+        </div>
+
+        <div id="text-insertion" class="mx-5 mt-3" contenteditable="true">
+
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            });
+
+            var sizeFont = 3;
+
+            function formatter(command, value) {
+                document.execCommand(command, false, value);
+            }
+            function fontSizeUp() {
+                return sizeFont++;
+            }
+            function fontSizeDown() {
+                return sizeFont--;
+            }
+        </script>
+    </body>
+    <style type="text/css">
+    body {
+        background-color: #424242;
+        padding-top: 5%;
+    }
+    [contenteditable] {
+          outline: 0px solid transparent;
+        }
+        #title {
+            color: #42a5f5;
+            text-align: center;
+            text-shadow: 0 0 25px #fd558f;
+        }
+
+        #subtitle {
+            color: #d5d82b;
+            text-align: center;
+            text-shadow: 0 0 25px #80d6ff;
+        }
+
+        #text-insertion {
+            border:solid 1.5px #ccc;
+			min-height:40vh;
+            border-radius: 2px;
+            background-color: #FFFFFF;
+        }
+
+        #text-insertion:focus {
+            border-color: #ea75c0;
+            box-shadow: 0 0 50px #b54490;
+        }
+
+        #toolbar {
+
+        }
+    </style>
+</html>
